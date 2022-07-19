@@ -65,9 +65,28 @@ class MinHeap:
             self.size = self.size * 2
 
         if self.empty == 0:
+            # Empty heap, just make it the root
             self.arr[self.empty] = element
             self.empty = self.empty + 1
         else:
             self.arr[self.empty] = element
+
+            # Maintain the min heap property
             self.heapify_up(self.empty)
             self.empty = self.empty + 1
+
+    def extract_min (self):
+        # Swap the root with the last element (empty - 1)
+        temp = self.arr[0]
+        self.arr[0] = self.arr[self.empty - 1]
+        self.arr[self.empty - 1] = temp
+
+        # Maintain the heap property
+        self.heapify_down(0)
+
+        # Decrease empty
+        self.empty = self.empty - 1
+
+        # Return extracted element
+        return temp
+
