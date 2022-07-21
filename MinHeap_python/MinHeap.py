@@ -34,9 +34,10 @@ class MinHeap:
             temp = self.arr[parent]
             self.arr[parent] = self.arr[index]
             self.arr[index] = temp
-            
+
             # Recurse
             self.heapify_up(parent)
+
 
     def heapify_down (self, index):
         # TODO Stop heapify_down if index's children are larger than heap_size/investigate further
@@ -112,3 +113,14 @@ class MinHeap:
         # Return extracted element
         return temp
 
+def build_heap (values):
+    # Based on Floyd's buildHeap, build a heap with values from array as-is
+    heap = MinHeap()
+    heap.arr = values
+    heap.heap_size = len(values)
+
+    # Start from the end and check/maintain the heap property
+    for i in range(len(values) - 1, -1, -1):
+        heap.heapify_down(i)
+
+    return heap
