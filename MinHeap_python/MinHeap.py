@@ -40,7 +40,6 @@ class MinHeap:
 
 
     def heapify_down (self, index):
-        # TODO Stop heapify_down if index's children are larger than heap_size/investigate further
         # The node at index i has children at indices 2i + 1 and 2i + 2; its parent is at floor ((i-1)/2)
         child_left = 2 * index + 1
         child_right = 2 * index + 2
