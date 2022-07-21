@@ -42,7 +42,7 @@ def test_insert_multiple_elements_into_empty_heap():
 
     assert all(map(lambda x: x[0] == x[1], list(zip(test.as_array(), test_against_array))[:test.get_heap_size()]))
 
-def test_extract_min_structure():
+def test_extract_min():
     # Same as test_insert_multiple_elements_into_empty_heap() to set up the tree for now/until we implement heap building function
     test = MH.MinHeap()
     test.insert(10)
@@ -70,7 +70,7 @@ def test_extract_min_structure():
     test_against_array[1] = 10
     test_against_array[2] = 7
 
-    assert all(map(lambda x: x[0] == x[1], list(zip(test.as_array(), test_against_array))[:test.get_heap_size()]))
+    assert (temp, all(map(lambda x: x[0] == x[1], list(zip(test.as_array(), test_against_array))[:test.get_heap_size()]))) == (1, True)
 
 if __name__ == "__main__":
     test_create_new_heap()
@@ -82,5 +82,5 @@ if __name__ == "__main__":
     test_insert_multiple_elements_into_empty_heap()
     print ("test_insert_multiple_elements_into_empty_heap passed!")
 
-    test_extract_min_structure()
-    print ("test_extract_min_structure passed!")
+    test_extract_min()
+    print ("test_extract_min passed!")
