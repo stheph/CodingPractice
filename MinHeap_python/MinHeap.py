@@ -2,22 +2,22 @@ from heapq import heapify
 import numpy as np
 import math
 
-HEAP_SIZE = 64
+MAX_HEAP_SIZE = 64
 
 class MinHeap:
     def __init__(self):
 
-        # Smallest empty index
-        self.empty = 0
+        # Heap size
+        self.heap_size = 0
 
         # Size of the heap
-        self.size = HEAP_SIZE
+        self.max_size = MAX_HEAP_SIZE
 
         # Backing array
-        self.arr = np.zeros((HEAP_SIZE))
+        self.arr = np.zeros((MAX_HEAP_SIZE))
 
     def is_empty(self):
-        return self.empty == 0
+        return self.heap_size == 0
 
     def as_array(self):
         return self.arr
@@ -36,6 +36,7 @@ class MinHeap:
             self.heapify_up(parent)
 
     def heapify_down (self, index):
+        # TODO Stop heapify_down if index's children are larger than heap_size/investigate further
         # The node at index i has children at indices 2i + 1 and 2i + 2; its parent is at floor ((i-1)/2)
         child_left = 2 * index + 1
         child_right = 2 * index + 2
@@ -53,39 +54,39 @@ class MinHeap:
             self.heapify_down(smallest)
 
     def insert (self, element):
-        if self.empty >= self.size:
+        if self.heap_size >= self.max_size:
             # If the array is too small, make a new array with double the size
-            new_arr = np.zeros((self.size * 2))
+            new_arr = np.zeros((self.max_size * 2))
 
             # Copy the old array to it
             new_arr[:len(self.arr)] = self.arr
 
             # Set the internal array to the new one, update size:
             self.arr = new_arr
-            self.size = self.size * 2
+            self.max_size = self.max_size * 2
 
-        if self.empty == 0:
+        if self.heap_size == 0:
             # Empty heap, just make it the root
-            self.arr[self.empty] = element
-            self.empty = self.empty + 1
+            self.arr[self.heap_size] = element
+            self.heap_size = self.heap_size + 1
         else:
-            self.arr[self.empty] = element
+            self.arr[self.heap_size] = element
 
             # Maintain the min heap property
-            self.heapify_up(self.empty)
-            self.empty = self.empty + 1
+            self.heapify_up(self.heap_size)
+            self.heap_size = self.heap_size + 1
 
     def extract_min (self):
-        # Swap the root with the last element (empty - 1)
+        # Swap the root with the last element (heap_size - 1)
         temp = self.arr[0]
-        self.arr[0] = self.arr[self.empty - 1]
-        self.arr[self.empty - 1] = temp
+        self.arr[0] = self.arr[self.heap_size - 1]
+        self.arr[self.heap_size - 1] = temp
 
         # Maintain the heap property
         self.heapify_down(0)
 
-        # Decrease empty
-        self.empty = self.empty - 1
+        # Decrease heap size
+        self.heap_size = self.heap_size - 1
 
         # Return extracted element
         return temp
