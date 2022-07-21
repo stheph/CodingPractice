@@ -2,7 +2,7 @@ from heapq import heapify
 import numpy as np
 import math
 
-MAX_HEAP_SIZE = 64
+MAX_HEAP_SIZE = 3
 
 class MinHeap:
     def __init__(self):
@@ -24,6 +24,9 @@ class MinHeap:
 
     def get_heap_size(self):
         return self.heap_size
+    
+    def get_max_size(self):
+        return self.max_size
 
     def heapify_up (self, index):
         # The node at index i has children at indices 2i + 1 and 2i + 2; its parent is at floor ((i-1)/2)
@@ -75,7 +78,7 @@ class MinHeap:
         
 
     def insert (self, element):
-        if self.heap_size >= self.max_size:
+        if self.heap_size + 1 >= self.max_size:
             # If the array is too small, make a new array with double the size
             new_arr = np.zeros((self.max_size * 2))
 
