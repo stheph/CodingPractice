@@ -2,7 +2,7 @@ from heapq import heapify
 import numpy as np
 import math
 
-MAX_HEAP_SIZE = 3
+MAX_HEAP_SIZE = 4
 
 class MinHeap:
     def __init__(self):

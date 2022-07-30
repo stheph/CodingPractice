@@ -62,7 +62,6 @@ def test_extract_min():
     #  10
     # [1,5,7,10]
 
-    # TODO Check that temp is correct later
     temp = test.extract_min()
 
     test_against_array = np.zeros((test.get_max_size()))
