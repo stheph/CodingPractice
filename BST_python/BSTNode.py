@@ -32,3 +32,17 @@ def search(tree, key):
         return search(tree.get_left_child(), key)
     else:
         return search(tree.get_right_child(), key)
+
+def min(tree):
+    # The smallest key is the furthest left node
+    x = tree
+    while not (x.get_left_child() == None):
+        x = x.get_left_child()
+    return x
+
+def max(tree):
+    # Opposite of min
+    x = tree
+    while not (x.get_right_child() == None):
+        x = x.get_right_child()
+    return x
