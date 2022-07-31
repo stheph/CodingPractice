@@ -46,3 +46,32 @@ def max(tree):
     while not (x.get_right_child() == None):
         x = x.get_right_child()
     return x
+
+def predecessor(tree):
+    # The largest key prior to the current key
+    # In inorder traversal, the predecessor will be in the node's left child, since it goes left->parent->right
+    x = tree
+    if not (x.get_left_child() == None):
+        return max(x.get_left_child())
+
+    # If the node lacks a left child, then the predecessor will be the lowest ancestor who's right child is also an ancestor of the node
+    # so we traverse up the tree, iteration stops when we encounter a node that's a right child instead of a left
+    y = x.get_parent()
+    while not (y == None) and x == y.get_left():
+        x = y
+        y = y.get_parent()
+    return y
+
+def successor(tree):
+    # Symmetric to predecessor
+    x = tree
+    if not (x.get_right_child() == None):
+        return min(x.get_right_child())
+    
+    y = x.get_parent()
+    while not (y == None) and x == y.get_right():
+        x = y
+        y = y.get_parent()
+    return y
+
+    
