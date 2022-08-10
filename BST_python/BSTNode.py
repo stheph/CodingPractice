@@ -21,6 +21,15 @@ class BSTNode:
 
     def get_parent(self):
         return self.parent
+    
+    def set_left_child(self, node):
+        self.left = node
+
+    def set_right_child(self, node):
+        self.right = node
+    
+    def set_parent(self, node):
+        self.parent = node
 
 def search(tree, key):
     if (tree == None) or (tree.get_key() == key):
@@ -74,4 +83,30 @@ def successor(tree):
         y = y.get_parent()
     return y
 
+def insert(tree, node):
+    # Assumes no duplicate keys
+    y = None # Parent of current node
+    x = tree
+    k = node.get_key()
+
+    while not (x == None):
+        y = x
+        if k < x.get_key():
+            # The node we're trying to insert has a key that's smaller, hence on the left
+            x = x.get_left()
+        else:
+            # Else go right
+            x = x.get_right()
     
+    # y is now the node that will become the parent of 'node'
+    node.set_parent(y)
+
+    if y == None:
+        # The tree was empty, so node becomes the root of the tree
+        tree = node
+    else:
+        # Otherwise, just make the node the correct child of y
+        if k < y.get_key():
+            y.set_left_child(node)
+        else:
+            y.set_right_child(node)
