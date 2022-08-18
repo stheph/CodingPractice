@@ -153,3 +153,12 @@ def delete(tree, node):
             y.set_left_child(z)
         else:
             y.set_right_child(z)
+
+def inorder(tree):
+    if tree == None:
+        return []
+    else:
+        left = inorder(tree.get_left_child())
+        current = [tree.get_key()]
+        right = inorder(tree.get_right_child())
+        return left + current + right
