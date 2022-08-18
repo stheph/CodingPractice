@@ -1,5 +1,12 @@
 import BSTNode as BST
 
+def build_tree(l):
+    tree = BST.BSTNode(l[0], "")
+    for e in l[1:]:
+        BST.insert(tree, BST.BSTNode(e, ""))
+    return tree
+
+
 tree = BST.BSTNode(12, "")
 
 node5 = BST.BSTNode(5, "")
@@ -21,3 +28,6 @@ BST.insert(tree, node13)
 BST.insert(tree, node17)
 
 print(BST.inorder(tree))
+
+tree2 = build_tree([12,5,18,2,9,15,19,13,17])
+print(BST.inorder(tree2))
