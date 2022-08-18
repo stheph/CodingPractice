@@ -136,4 +136,20 @@ def delete(tree, node):
 
     # node has two children, so it's a little bit more complicated
     else:
-        pass
+        # we have to replace x with its successor, call it z
+        z = successor(x)
+
+        # z's parent inherit z's children (technically there should only be one)
+        w = z.get_parent()
+        w.set_left_child(z.get_left_child())
+        w.set_right_child(z.get_right_child())
+
+        # z gets node's children
+        z.set_left_child(x.get_left_child())
+        z.set_right_child(x.get_right_child())
+
+        # y's child now becomes z
+        if y.get_left_child() == x:
+            y.set_left_child(z)
+        else:
+            y.set_right_child(z)
