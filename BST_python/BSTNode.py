@@ -31,6 +31,9 @@ class BSTNode:
     def set_parent(self, node):
         self.parent = node
 
+    def __str__(self):
+        return "({0} : {1})".format(self.key, self.data)
+
 def search(tree, key):
     if (tree == None) or (tree.get_key() == key):
         # It's not in the tree, or we found it
