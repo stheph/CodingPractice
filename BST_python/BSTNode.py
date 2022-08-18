@@ -66,7 +66,7 @@ def predecessor(tree):
     # If the node lacks a left child, then the predecessor will be the lowest ancestor who's right child is also an ancestor of the node
     # so we traverse up the tree, iteration stops when we encounter a node that's a right child instead of a left
     y = x.get_parent()
-    while not (y == None) and x == y.get_left():
+    while not (y == None) and x == y.get_left_child():
         x = y
         y = y.get_parent()
     return y
@@ -78,7 +78,7 @@ def successor(tree):
         return min(x.get_right_child())
     
     y = x.get_parent()
-    while not (y == None) and x == y.get_right():
+    while not (y == None) and x == y.get_right_child():
         x = y
         y = y.get_parent()
     return y
@@ -93,10 +93,10 @@ def insert(tree, node):
         y = x
         if k < x.get_key():
             # The node we're trying to insert has a key that's smaller, hence on the left
-            x = x.get_left()
+            x = x.get_left_child()
         else:
             # Else go right
-            x = x.get_right()
+            x = x.get_right_child()
     
     # y is now the node that will become the parent of 'node'
     node.set_parent(y)
@@ -110,3 +110,30 @@ def insert(tree, node):
             y.set_left_child(node)
         else:
             y.set_right_child(node)
+
+def delete(tree, node):
+    x = node
+    y = node.get_parent()
+    # node has no children, so we can simply replace it with None
+    if x.get_left_child() == None and x.get_right_child() == None:
+        if y.get_left_child() == x:
+            y.set_left_child(None)
+        else:
+            y.set_right_child(None)
+
+    # node has one child, so we remove it and set its child as its parent's child
+    elif x.get_left_child() == None and x.get_right_child() != None:
+        if y.get_left_child() == x:
+            y.set_left_child(x.get_right_child())
+        else:
+            y.set_right_child(x.get_right_child())
+        
+    elif x.get_left_child() !=None and x.get_right_child() == None:
+        if y.get_left_child() == x:
+            y.set_left_child(x.get_left_child())
+        else:
+            y.set_right_child(x.get_left_child())
+
+    # node has two children, so it's a little bit more complicated
+    else:
+        pass
