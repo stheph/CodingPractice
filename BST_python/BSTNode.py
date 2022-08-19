@@ -21,6 +21,9 @@ class BSTNode:
 
     def get_parent(self):
         return self.parent
+
+    def set_data(self, data):
+        self.data = data
     
     def set_left_child(self, node):
         self.left = node
