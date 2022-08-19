@@ -18,6 +18,21 @@ def test_create_bst():
 
     assert ((inorder, key, data, left_child, right_child, parent) == ([1], 1, "", None, None, None))
 
+def test_search_not_found():
+    tree = build_tree([1,3,4,5,2,6,7])
+    found_node = BST.search(tree, 9)
+
+    assert (found_node == None)
+
+def test_search_found():
+    tree = build_tree([1,5,6,9])
+    node = BST.BSTNode(3, "test")
+    BST.insert(tree, node)
+
+    found_node = BST.search(tree, 3)
+
+    assert all([found_node != None, found_node.data == "test"])
+
 def test_insert_left_node():
     tree = BST.BSTNode(2, "test2")
     node = BST.BSTNode(1, "test1")
@@ -60,6 +75,12 @@ def test_insert_right_node():
 if __name__ == "__main__":
     test_create_bst()
     print ("test_create_bst passed!")
+
+    test_search_not_found()
+    print ("test_search_not_found passed!")
+
+    test_search_found()
+    print ("test_search_found passed!")
 
     test_insert_left_node()
     print ("test_insert_left_node passed!")
