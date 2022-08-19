@@ -28,11 +28,3 @@ class Dictionary:
             return node.get_data()
         else:
             return None
-
-d = Dictionary()
-d.insert(1, "test1")
-d.insert(2, "test2")
-d.insert(3, "test3")
-d.insert(2, "test4")
-
-print (d.lookup(2))
