@@ -1,7 +1,6 @@
 exception Not_found
 
-type 'a data = { data : 'a }
-type 'a bst = Nil | Node of int * 'a data * 'a bst * 'a bst
+type 'a bst = Nil | Node of int * 'a * 'a bst * 'a bst
 
 let rec search t key = begin
   match t with
@@ -31,10 +30,12 @@ let rec inorder t =
     inorder l @ [(k, d)] @ inorder r
   end
 
-let test = Nil
-let t1 = insert test 12 {data = "a"}
-let t2 = insert t1 5 {data = "b"}
-let t3 = insert t2 17 {data = "c"}
-let t4 = insert t3 1 {data = "d"}
-let t5 = insert t4 3 {data = "e"}
-let t6 = insert t5 2 {data = "f"}
+let rec tree_of_list l =
+  begin
+    match l with
+    | [] -> Nil
+    | (k, d)::tl ->
+    insert (tree_of_list tl) k d
+  end
+
+let test = tree_of_list [(12, "a");(5, "b");(17, "c");(1, "d");(3, "e");(2, "f")]
