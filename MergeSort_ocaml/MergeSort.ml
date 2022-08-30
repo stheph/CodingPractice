@@ -30,5 +30,3 @@ let rec mergesort l =
       let (l1, l2) = split l' in
       merge (mergesort l1) (mergesort l2)
   end
-
-let l = mergesort [1;2;45;8;6;4;2;4;5;7;1;3;8]
