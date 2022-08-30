@@ -21,4 +21,14 @@ let rec split l =
         (hd::l2, l1)
   end
 
-let (l1, l2) = split [1;2;3;4;5;6;7;8;9]
+let rec mergesort l =
+  begin
+    match l with
+    | [] -> []
+    | [x] -> [x]
+    | l' ->
+      let (l1, l2) = split l' in
+      merge (mergesort l1) (mergesort l2)
+  end
+
+let l = mergesort [1;2;45;8;6;4;2;4;5;7;1;3;8]
