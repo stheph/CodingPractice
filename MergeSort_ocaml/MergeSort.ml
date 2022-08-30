@@ -16,9 +16,9 @@ let rec split l =
     | [] -> ([], [])
     | [x] -> ([x], [])
     | hd::tl ->
-      (* split [1;2] -> split [2] -> [2], [] -> [2], 1::[] *)
         let (l1, l2) = split tl in
-        (l1, hd::l2)
+        (* flipping the order should alternate elements *)
+        (hd::l2, l1)
   end
 
 let (l1, l2) = split [1;2;3;4;5;6;7;8;9]
