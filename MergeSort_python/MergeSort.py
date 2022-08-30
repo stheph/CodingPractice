@@ -15,3 +15,13 @@ def merge(l1, l2):
             merged.insert(0, l2[0])
             return merged
 
+def split(l):
+    midpoint = int(len(l) / 2)
+    return (l[:midpoint], l[midpoint:])
+
+def mergesort(l):
+    if len(l) == 0 or len(l) == 1:
+        return l
+    else:
+        (l1, l2) = split(l)
+        return merge(mergesort(l1), mergesort(l2))
