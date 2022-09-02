@@ -6,7 +6,7 @@ function map<A, B>(l: A[], f: (x : A) => B) : B[]
     }
     else
     {
-        let [head, ...tail] = l;
+        let [head, ...tail] : A[] = l;
         return [f(head), ...map(tail, f)];
 
     }
