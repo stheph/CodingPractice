@@ -1,4 +1,4 @@
-function map (l: any[], f: (x : any) => any) : any[]
+function map<A, B>(l: A[], f: (x : A) => B) : B[]
 {
     if (l.length == 0)
     {
@@ -6,9 +6,9 @@ function map (l: any[], f: (x : any) => any) : any[]
     }
     else
     {
-        let out : any[] = [f(l[0])];
-        out.push(...map(l.slice(1, l.length), f))
-        return out;
+        let [head, ...tail] = l;
+        return [f(head), ...map(tail, f)];
+
     }
 }
 
