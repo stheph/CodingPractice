@@ -1,7 +1,7 @@
 import java.util.*;
 import java.util.function.*;
 
-class Map
+class Functions
 {
     public static void main(String[] args)
     {
