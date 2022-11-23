@@ -1,5 +1,4 @@
-def permutation (n):
-    l = [x for x in range(1, n + 1)]
+def permutation (l):
     solutions = []
     backtrack([], solutions, l)
     return solutions
@@ -19,4 +18,4 @@ def backtrack(current, solutions, original):
         backtrack(current, solutions, original)
         current.pop()
 
-print (permutation (3))
+print (permutation ([1,2,3]))
